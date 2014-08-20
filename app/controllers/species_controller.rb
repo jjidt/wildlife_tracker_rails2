@@ -57,7 +57,11 @@ class SpeciesController < ApplicationController
 
   def range
     @species = Species.find(params[:id])
-    @sightings = @species.date_range(params)
+    if params[:start_date] != "" && params[:end_date] != ""
+      @sightings = @species.date_range(params)
+    else
+      @sightings = @species.sightings
+    end
     render('species/show.html.erb')
   end
 end
