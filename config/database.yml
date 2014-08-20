@@ -1,0 +1,17 @@
+
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  <<: *default
+  database: wildlife_tracker_development
+
+
+test:
+  <<: *default
+  database: wildlife_tracker_test
