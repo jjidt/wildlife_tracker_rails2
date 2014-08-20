@@ -1,4 +1,4 @@
-class SpeciesController < ApplicationController
+module CRUD
   def index
     @specieses = Species.order(:name)
     render('species/index.html.erb')
@@ -20,13 +20,11 @@ class SpeciesController < ApplicationController
 
   def show
     @species = Species.find(params[:id])
-    @sightings = @species.sightings
     render('species/show.html.erb')
   end
 
   def edit
     @species = Species.find(params[:id])
-    @sighting = Sighting.new
     render('species/edit.html.erb')
   end
 
@@ -43,21 +41,5 @@ class SpeciesController < ApplicationController
     @species = Species.find(params[:id])
     @species.destroy
     redirect_to('/')
-  end
-
-  def create_sighting
-    @species = Species.find(params[:id])
-    @sighting = @species.sightings.new(params[:sighting])
-    if @sighting.save
-      render('species/success.html.erb')
-    else
-      render('species/edit.html.erb')
-    end
-  end
-
-  def range
-    @species = Species.find(params[:id])
-    @sightings = @species.date_range(params)
-    render('species/show.html.erb')
   end
 end

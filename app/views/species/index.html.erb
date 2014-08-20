@@ -1,7 +1,13 @@
 <h1 class="jumbotron"> Species!!! </h1>
 <ul>
   <% @specieses.each do |species| %>
-    <li><a href="species/<%= species.id %>"><%= species.name %></a></li>
+    <li>
+      <form method="post" action="species/<%= species.id %>">
+        <a href="species/<%= species.id %>"><%= species.name %></a>
+        <input type="hidden" name="_method" value="delete">
+        <button id="destroy">DESTROY!</button>
+      </form>
+    </li>
   <% end %>
 </ul>
 

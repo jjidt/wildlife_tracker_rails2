@@ -1,5 +1,30 @@
 <h1><%= @species.name %></h1>
 
+<h2>Sightings</h2>
+  <ul>
+    <% @sightings.each do |sighting| %>
+      <li>Date: <%= sighting.date %><br>
+          Longitude: <%= sighting.longitude %><br>
+          Latitude: <%= sighting.latitude %><br>
+          Region: <%= sighting.region %>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
 
-<p><a href='/species/:id/edit'>Edit Species</a></p>
+<p><a href='/species/<%= @species.id %>/edit'>Edit Species</a></p>
+<br>
+<p>Narrow Sightings</p>
+<p>
+  <form method="post" action="/species/<%= @species.id %>/range">
+    <label for="start_date">Start Date</label>
+    <input id="start_date" name="start_date" type="date">
+    <label for="end_date">End Date</label>
+    <input id="end_date" name="end_date" type="date">
+    <button>Submit</button>
+  </form>
+</p>
+<br>
 <p><a href='/'>Return to Species List</a></p>
+
+
