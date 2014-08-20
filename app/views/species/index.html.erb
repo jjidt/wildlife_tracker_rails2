@@ -1,1 +1,8 @@
-<h1> Species!!! </h1>
+<h1 class="jumbotron"> Species!!! </h1>
+<ul>
+  <% @specieses.each do |species| %>
+    <li><a href="species/<%= species.id %>"><%= species.name %></a></li>
+  <% end %>
+</ul>
+
+<p><a href="species/new">Add a species</a></p>
